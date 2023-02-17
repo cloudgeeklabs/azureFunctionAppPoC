@@ -154,13 +154,48 @@ $spObject | ConvertTo-Json
 
 Setting up the Action YAML File: 
 
-https://github.com/marketplace/actions/azure-login 
-https://github.com/marketplace/actions/azure-functions-action
-https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure-rbac.yml
-https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md
-https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows
+Documentation used in setting things up: 
+[GitHub Action: azure-login](https://github.com/marketplace/actions/azure-login)
+[GitHub Action: azure-function-action](https://github.com/marketplace/actions/azure-functions-action)
+[GitHub Action WorkFlow Samples](https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure-rbac.yml)
+[GitHub Action Workflow Secrets](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md)
+[Learn MSFT Connect GitHub to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
+[Learn MSFT Function References](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell?tabs=portal#configure-function-scriptfile)
 
 ```yaml
+name: DeployPSFunctionPoC
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  FUNCTION_NAME: 'cglabs-fordpoc-func'
+  SCRIPT_PATH: '.'
+  RESOURCE_GROUP: 'FordLoggingPoc'
+  LOCATION: 'eastus'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout Github Action'
+        uses: actions/checkout@v3
+
+      - name: 'Login Azure via SP'
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS }}
+          enable-AzPSSession: true
+
+      - name: 'Deploy Function'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: ${{ env.FUNCTION_NAME }}
+          package: ${{ env.SCRIPT_PATH}}
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
 
 ```
 
