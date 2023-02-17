@@ -152,15 +152,15 @@ $spObject | ConvertTo-Json
 }
 ```
 
-Setting up the Action YAML File: 
+## Setting up the Action YAML File ##
 
 Documentation used in setting things up: 
-[GitHub Action: azure-login](https://github.com/marketplace/actions/azure-login)
-[GitHub Action: azure-function-action](https://github.com/marketplace/actions/azure-functions-action)
-[GitHub Action WorkFlow Samples](https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure-rbac.yml)
-[GitHub Action Workflow Secrets](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md)
-[Learn MSFT Connect GitHub to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
-[Learn MSFT Function References](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell?tabs=portal#configure-function-scriptfile)
+- [GitHub Action: azure-login](https://github.com/marketplace/actions/azure-login)
+- [GitHub Action: azure-function-action](https://github.com/marketplace/actions/azure-functions-action)
+- [GitHub Action WorkFlow Samples](https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure-rbac.yml)
+- [GitHub Action Workflow Secrets](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md)
+- [Learn MSFT Connect GitHub to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
+- [Learn MSFT Function References](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell?tabs=portal#configure-function-scriptfile)
 
 ```yaml
 name: DeployPSFunctionPoC
