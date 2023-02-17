@@ -148,6 +148,7 @@ Setting up the Action YAML File:
 https://github.com/marketplace/actions/azure-login 
 https://github.com/marketplace/actions/azure-functions-action
 https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure-rbac.yml
+https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md
 
 ```yaml
 
