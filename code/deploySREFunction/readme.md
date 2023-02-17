@@ -1,3 +1,0 @@
-## deploySREFunction ##
-
-Readme Notes
