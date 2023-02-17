@@ -1,7 +1,9 @@
 # Setup Notes #
 
 ## Required Components/Configuration ##
+
 There are some requirements that must be meant before using this code both locally and within Azure. 
+
 - System Managed Identity associated with Azure Function and Rights with Azure SQL Db to write to the tables
 - Azure SQL Database (10 DTU is what I'm testing with - can scale up if needed)
 - Azure Function (with Time based Trigger set to every Minute)
@@ -9,6 +11,7 @@ There are some requirements that must be meant before using this code both local
 
 
 ## Local Development ##
+
 Install Required Tools on local development workstation:
 ``` powershell
 # Visual Studio Code
@@ -215,4 +218,4 @@ jobs:
 
 4. When setting up SQL to use the "System Managed Identity" - the SMI will be the same name as the FunctionApp name. 
 
-
+5. With what this FunctionApp is doing - would look at creating an Alert to notify team if it is down or has stopped feeding telemtry data. 
