@@ -14,7 +14,6 @@ env:
 jobs:
   build:
     runs-on: windows-latest
-    environment: PoC
     steps:
       - name: 'Checkout Github Action'
         uses: actions/checkout@v3
