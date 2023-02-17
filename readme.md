@@ -117,6 +117,18 @@ code --install-extension ms-azuretools.vscode-azurefunctions
 
 ## Setting up GitHub ##
 
+### Links/Docs ###
+Documentation used in setting things up: 
+- [GitHub Action: azure-login](https://github.com/marketplace/actions/azure-login)
+- [GitHub Action: azure-function-action](https://github.com/marketplace/actions/azure-functions-action)
+- [GitHub Action WorkFlow Samples](https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure-rbac.yml)
+- [GitHub Action Workflow Secrets](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md)
+- [Learn MSFT Connect GitHub to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
+- [Learn MSFT Function References](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell?tabs=portal#configure-function-scriptfile)
+- [GitHub Action Syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [Events that Trigger Workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
+
+
 ### Setting up Service Principal for GitHub Actions ###
 
 While best practice is providing only the access required to perform a function via RBAC, there isn't a dedicate "out the box" role for Azure Functions. You would either need to give Contributor or create a custom role with desired permissions. For example: microsoft.web/sites/functions/read role allows you to get Web Apps Functions. microsoft.web/sites/functions/write role allows you to update Web Apps Functions, and give this to the Service Principal.
@@ -184,15 +196,13 @@ To github.com:cloudgeeklabs/azureFunctionAppPoC.git
 error: failed to push some refs to 'github.com:cloudgeeklabs/azureFunctionAppPoC.git'
 ```
 
-Documentation used in setting things up: 
-- [GitHub Action: azure-login](https://github.com/marketplace/actions/azure-login)
-- [GitHub Action: azure-function-action](https://github.com/marketplace/actions/azure-functions-action)
-- [GitHub Action WorkFlow Samples](https://github.com/Azure/actions-workflow-samples/blob/master/FunctionApp/windows-dotnet-functionapp-on-azure-rbac.yml)
-- [GitHub Action Workflow Secrets](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md)
-- [Learn MSFT Connect GitHub to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
-- [Learn MSFT Function References](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell?tabs=portal#configure-function-scriptfile)
-- [GitHub Action Syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
-- [Events that Trigger Workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
+### Workflows ###
+- Workflows: Workflows are defined by a YAML file checked in to your repo and will run when triggered by a specific event. Workflows are defined in the .github/workflows directory in a repository, and a repository can have multiple workflows, each of which can perform a different set of tasks. For example, you can have one workflow to build and test pull requests, another workflow to deploy your application every time a release is created, and still another workflow that adds a label every time someone opens a new issue.
+- Runner: A runner is a server that runs your workflows when they're triggered. Each runner can run a single job at a time.
+- Events: An event is a specific activity in a repository that triggers a workflow run. (Such as Pull Request or Push)
+- Jobs: A job is a set of steps in a workflow that execute on the same runner. You can configure a job's dependencies with other jobs; by default, jobs have no dependencies and run in parallel with each other. Jobs execute on different runners. 
+- Actions: You can configure a job's dependencies with other jobs; by default, jobs have no dependencies and run in parallel with each other.
+
 
 ```yaml
 # This is the Name of the Workflow and is displayed in GH Actions. Should be meaningful to the work being performed
@@ -203,7 +213,7 @@ run-name: deployTheCode
 
 # You can define single or multiple events that can trigger a workflow, or set a time schedule. You can also restrict the execution of a workflow to only occur for specific files, tags, or branch changes.
 on:
-  pull_request:
+  push:
     branches: [ "main" ]
   workflow_dispatch:
 

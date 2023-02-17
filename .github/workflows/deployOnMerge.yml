@@ -1,8 +1,9 @@
-name: DeployPSFunctionPoC
+name: Deploy Azure FunctionApp
 
 on:
-  pull_request:
+  pull_request_review:
     branches: [ "main" ]
+    type: [ "submitted" ]
   workflow_dispatch:
 
 env:
@@ -12,7 +13,8 @@ env:
   LOCATION: 'eastus'
 
 jobs:
-  build:
+  approved:
+    if: github.event.review.state == 'approved'
     runs-on: windows-latest
     steps:
       - name: 'Checkout Github Action'
