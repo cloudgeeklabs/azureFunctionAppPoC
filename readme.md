@@ -134,12 +134,21 @@ $spObject = [PSCustomObject]@{
 }
 $spObject | ConvertTo-Json
 
+## or use AZ CLI
+ az ad sp create-for-rbac --name 'GitHubActionApp' --role 'contributor' --scopes /subscriptions/e56b7094-826f-412e-bf37-0f13a1f872cc --sdk-auth
+
 ## Sample Output for $spObject
 {
-    "clientId": "12345678-1234-abcd-1234-12345678abcd",
-    "clientSecret": "abcdefghijklmnopqrstuwvxyz1234567890=",
-    "subscriptionId": "12345678-1234-abcd-1234-12345678abcd",
-    "tenantId": "12345678-1234-abcd-1234-12345678abcd"
+"clientId": "12345678-1234-abcd-1234-12345678abcd",
+"clientSecret": "abcdefghijklmnopqrstuwvxyz1234567890=",
+"subscriptionId": "12345678-1234-abcd-1234-12345678abcd",
+"tenantId": "12345678-1234-abcd-1234-12345678abcd"
+"activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+"resourceManagerEndpointUrl": "https://management.azure.com/",
+"activeDirectoryGraphResourceId": "https://graph.windows.net/",
+"sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+"galleryEndpointUrl": "https://gallery.azure.com/",
+"managementEndpointUrl": "https://management.core.windows.net/"
 }
 ```
 
