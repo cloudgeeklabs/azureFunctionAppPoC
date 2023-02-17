@@ -155,7 +155,17 @@ $spObject | ConvertTo-Json
 }
 ```
 
-## Setting up the Action YAML File ##
+## Setting up GitHub ##
+
+### Setup Branch Protection ###
+
+You can create a branch protection rule to enforce certain workflows for one or more branches, such as requiring an approving review or passing status checks for all pull requests merged into the protected branch. This is strongly recommended for [MAIN]; not allowing direct push/merge without PR and approvals.
+
+[About Protected Branch Rules](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches#require-pull-request-reviews-before-merging)
+
+1. Goto Settings - Branches - Branch Protection Rule
+2. Require a PR before merging - require approvals (number)
+3. Also check "Do not allow bypassing the above settings" so that admins can't bypass the PR requirement
 
 Documentation used in setting things up: 
 - [GitHub Action: azure-login](https://github.com/marketplace/actions/azure-login)
@@ -164,10 +174,17 @@ Documentation used in setting things up:
 - [GitHub Action Workflow Secrets](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md)
 - [Learn MSFT Connect GitHub to Azure](https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure?tabs=azure-portal%2Cwindows)
 - [Learn MSFT Function References](https://learn.microsoft.com/en-us/azure/azure-functions/functions-reference-powershell?tabs=portal#configure-function-scriptfile)
+- [GitHub Action Syntax](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+- [Events that Trigger Workflows](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows)
 
 ```yaml
-name: DeployPSFunctionPoC
+# This is the Name of the Workflow and is displayed in GH Actions. Should be meaningful to the work being performed
+name: WorkFlowName
 
+# GitHub displays the workflow run name in the list of workflow runs on your repository's "Actions" tab. If run-name is omitted or is only whitespace, then the run name is set to event-specific information for the workflow run. For example, for a workflow triggered by a push or pull_request event, it is set as the commit message. (I kinda prefer the committed message)
+run-name: deployTheCode
+
+# You can define single or multiple events that can trigger a workflow, or set a time schedule. You can also restrict the execution of a workflow to only occur for specific files, tags, or branch changes.
 on:
   pull_request:
     branches: [ "main" ]
@@ -201,6 +218,9 @@ jobs:
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
 
 ```
+
+Events that can Trigger Actions: Pull Request (good for tests before merge/deploy), Push (brach/merge), Issue (open/close etc). Events are workflows and thus require One or More Jobs that are broken down into invdividual steps. 
+
 
 ** Make sure that you enable Public Network Access in the SQL Server Firewall and "Allow Azure Services and Resources to access this server". This is acceptable for the PoC.. But would configure this to Private Endpoints or Dedicated App Service Plan (so you can whitelist Outbound Public IP). 
 
