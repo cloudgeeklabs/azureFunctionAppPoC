@@ -167,6 +167,24 @@ You can create a branch protection rule to enforce certain workflows for one or 
 2. Require a PR before merging - require approvals (number)
 3. Also check "Do not allow bypassing the above settings" so that admins can't bypass the PR requirement
 
+Results in this Output:
+```powershell
+┏[bemitchell][main]
+┖[~\repos\cglabs\azureFunctionAppPoC]> git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.32 KiB | 1.32 MiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: error: GH006: Protected branch update failed for refs/heads/main.
+remote: error: Changes must be made through a pull request.
+To github.com:cloudgeeklabs/azureFunctionAppPoC.git
+ ! [remote rejected] main -> main (protected branch hook declined)
+error: failed to push some refs to 'github.com:cloudgeeklabs/azureFunctionAppPoC.git'
+```
+
 Documentation used in setting things up: 
 - [GitHub Action: azure-login](https://github.com/marketplace/actions/azure-login)
 - [GitHub Action: azure-function-action](https://github.com/marketplace/actions/azure-functions-action)
