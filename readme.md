@@ -115,8 +115,9 @@ code --install-extension ms-azuretools.vscode-azurefunctions
   SELECT * FROM resourceIds
 ```
 
+## Setting up GitHub ##
 
-## Setting up Service Principal for GitHub Actions ##
+### Setting up Service Principal for GitHub Actions ###
 
 While best practice is providing only the access required to perform a function via RBAC, there isn't a dedicate "out the box" role for Azure Functions. You would either need to give Contributor or create a custom role with desired permissions. For example: microsoft.web/sites/functions/read role allows you to get Web Apps Functions. microsoft.web/sites/functions/write role allows you to update Web Apps Functions, and give this to the Service Principal.
 
@@ -154,8 +155,6 @@ $spObject | ConvertTo-Json
 "managementEndpointUrl": "https://management.core.windows.net/"
 }
 ```
-
-## Setting up GitHub ##
 
 ### Setup Branch Protection ###
 
