@@ -7,7 +7,7 @@ on:
 
 env:
   FUNCTION_NAME: 'cglabs-fordpoc-func'
-  SCRIPT_PATH: './code/run.ps1'
+  SCRIPT_PATH: '.'
   RESOURCE_GROUP: 'FordLoggingPoc'
   LOCATION: 'eastus'
 
