@@ -11,8 +11,7 @@ env:
   LOCATION: 'eastus'
 
 jobs:
-  approved:
-    if: github.event.review.state == 'approved'
+  deployDev:
     runs-on: windows-latest
     steps:
       - name: 'Checkout Github Action'
