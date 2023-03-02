@@ -1,0 +1,37 @@
+name: Deploy Azure FunctionApp
+
+on:
+  pull_request_review:
+    branches: [ "main" ]
+    type: [ "submitted" ]
+  workflow_dispatch:
+
+env:
+  FUNCTION_NAME: 'cglabs-fordpoc-func'
+  SCRIPT_PATH: 'code/.'
+  RESOURCE_GROUP: 'FordLoggingPoc'
+  LOCATION: 'eastus'
+
+jobs:
+  approved:
+    if: github.event.review.state == 'approved'
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout Github Action'
+        uses: actions/checkout@v3
+
+      - name: 'Login Azure via SP'
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDS }}
+          enable-AzPSSession: true
+
+      - name: 'Deploy Function'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: ${{ env.FUNCTION_NAME }}
+          package: ${{ env.SCRIPT_PATH}}
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+
+          
