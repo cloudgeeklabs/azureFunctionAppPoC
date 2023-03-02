@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
 
 env:
-  FUNCTION_NAME: 'cglabs-fordpoc-func'
+  FUNCTION_NAME: 'cglabs-functionprod-func'
   SCRIPT_PATH: 'code/.'
-  RESOURCE_GROUP: 'FordLoggingPoc'
+  RESOURCE_GROUP: 'cglabs-functionapp-testing'
   LOCATION: 'eastus'
 
 jobs:

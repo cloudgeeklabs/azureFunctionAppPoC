@@ -1,15 +1,13 @@
 name: Deploy Azure FunctionApp
 
 on:
-  pull_request_review:
-    branches: [ "main" ]
-    type: [ "submitted" ]
-  workflow_dispatch:
+  push:
+    branches: [ "dev" ]
 
 env:
-  FUNCTION_NAME: 'cglabs-fordpoc-func'
+  FUNCTION_NAME: 'cglabls-functionapp-testing-func'
   SCRIPT_PATH: 'code/.'
-  RESOURCE_GROUP: 'FordLoggingPoc'
+  RESOURCE_GROUP: 'cglabs-functionapp-testing'
   LOCATION: 'eastus'
 
 jobs:
