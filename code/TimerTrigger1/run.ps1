@@ -12,6 +12,7 @@ if ($Timer.IsPastDue) {
 <# __main__ code below this point #>
 Try {
 
+    ## Get all the Subs
     $Subs = $(Get-AzSubscription)
 
     Write-Output $subs.Name
