@@ -16,12 +16,10 @@ Try {
     $Subs = $(Get-AzSubscription)
     Write-Output $subs.Name
 
-    <#
+    
     ## Testing AzConnect using User Managed Identity
-    Disconnect-AzAccount
-    Clear-AzContext -Scope CurrentUser -Force
     [void](Connect-AzAccount -Identity -AccountId 'bc646341-f8b7-4413-993d-623be46336d5' -ErrorAction SilentlyContinue)
-    #>
+
 
 } catch [System.SystemException] {
         
