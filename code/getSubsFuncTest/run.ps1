@@ -19,11 +19,11 @@ Try {
     ## Testing AzConnect withing FunctionApp
     Disconnect-AzAccount
     Clear-AzContext -Scope CurrentUser -Force
-    Connect-AzAccount -Identity -AccountId 'cglabs-functionapp-umi' -ErrorAction SilentlyContinue
+    Connect-AzAccount -Identity -AccountId 'bc646341-f8b7-4413-993d-623be46336d5' -ErrorAction SilentlyContinue
 
     ## Try Creating Something
     [void](Set-AzContext -Subscription 'e56b7094-826f-412e-bf37-0f13a1f872cc')
-    New-AzResourceGroup -Name 'bc646341-f8b7-4413-993d-623be46336d5' -Location 'EastUs'
+    New-AzResourceGroup -Name 'TestingFunctionPerms' -Location 'EastUs'
 
 } catch [System.SystemException] {
         
