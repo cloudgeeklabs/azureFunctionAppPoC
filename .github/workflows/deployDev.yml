@@ -2,7 +2,7 @@ name: Deploy Azure FunctionApp-Dev
  
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ dev ]
 
 env:
   FUNCTION_NAME: 'cglabls-functionapp-testing-func'
