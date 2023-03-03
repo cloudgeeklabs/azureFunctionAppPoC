@@ -13,7 +13,8 @@
 # Remove this if you are not planning on using MSI or Azure PowerShell.
 if ($env:MSI_SECRET) {
     Disable-AzContextAutosave -Scope Process | Out-Null
-    Connect-AzAccount -Identity -AccountId 'cglabs-functionapp-umi' -ErrorAction SilentlyContinue
+    #Connect-AzAccount -Identity -AccountId 'cglabs-functionapp-umi' -ErrorAction SilentlyContinue
+    Connect-AzAccount -Identity -ErrorAction SilentlyContinue
 }
 
 # Uncomment the next line to enable legacy AzureRm alias in Azure PowerShell.
